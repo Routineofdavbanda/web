@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RODB | Calander</title>
+    <link rel="icon" href="RODB transparent.ico">
+    <style>
+        #content-container {
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        #image1 {
+            width: 100%;
+            height: auto;
+        }
+        select {
+    background-color: #1E1E1E;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+        body {
+        background-color:  #181818; 
+        font-family: 'SF Pro Display', sans-serif; 
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #1E1E1E; 
+        color: #333; 
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'SF Pro Display', sans-serif; 
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+      }
+
+      .logo img {
+        max-height: 100px;
+        margin-left: 5px;
+        margin-top: 1px;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      nav a {
+        color: #F5F5F5; 
+        text-decoration: none;
+        font-weight: 600; 
+        position: relative; 
+        transition: color 0.3s ease; 
+        font-size: 30px;
+      }
+
+      nav a::before {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-image: linear-gradient(to right, rgb(0, 255, 255), rgb(255, 0, 0)); 
+        opacity: 0; 
+        transition: opacity 0.3s ease; 
+      }
+
+      nav a:hover::before {
+        opacity: 1; 
+      }
+        @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo img {
+    max-height: 80px;
+  }
+
+  .logo {
+    text-align: center;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row; 
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 24px;
+  }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="RODB transparent.png" alt="Your Logo">
+        </div>
+        <nav>
+            <a href="indexdark.html">Home</a>
+            <a href="eventdark.html" >Events</a>
+            <a href="holidaysdark.html">Calendar</a>
+            <!-- <a href="untitled.html" target="_blank">Acework</a> -->
+        </nav>
+    </header>
+
+    <center><h1><font color="#F5F5F5"> School Calendar</font></h1></center>
+    <select id="image-selector" onchange="showContent()">
+        <option value="selector" disabled selected>Select Calendar</option>
+        <option value="image1">Year Planner</option>
+        <option value="text2">Activity Calendar</option>
+    </select>
+
+    <div id="content-container">
+        <img id="image1" src="calander.png" alt="Year Planner" class="hidden">
+        <p id="text2" class="hidden"><font color="#F5F5F5"> No Activity Calendar For Session 2024-25</font></p>
+    </div>
+
+    <script>
+        function showContent() {
+            document.getElementById('image1').classList.add('hidden');
+            document.getElementById('text2').classList.add('hidden');
+
+            var selectedValue = document.getElementById('image-selector').value;
+
+            if (selectedValue) {
+                document.getElementById(selectedValue).classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

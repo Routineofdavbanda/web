@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RODB | Events</title>
+<link rel="icon" href="RODB transparent.ico">
+<style>
+     body {
+        background-color: #f5f5f5; 
+        font-family: 'SF Pro Display', sans-serif; 
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #ffffff; 
+        color: #333; 
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'SF Pro Display', sans-serif; 
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+      }
+
+      .logo img {
+        max-height: 100px;
+        margin-left: 5px;
+        margin-top: 1px;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      nav a {
+        color: #333; 
+        text-decoration: none;
+        font-weight: 600; 
+        position: relative; 
+        transition: color 0.3s ease; 
+        font-size: 30px;
+      }
+
+      nav a:hover {
+        color: rgba(117, 5, 80, 0.9); 
+      }
+
+      nav a::before {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-image: linear-gradient(to right, rgb(0, 255, 255), rgb(255, 0, 0)); 
+        opacity: 0; 
+        transition: opacity 0.3s ease; 
+      }
+
+      nav a:hover::before {
+        opacity: 1; 
+      }
+
+    .cards-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+    .card {
+        width: calc(25% - 40px); 
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+
+    #video-container {
+        position: relative;
+        width: 100%;
+        height: 70%; 
+        overflow: hidden;
+    }
+
+    video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.7); 
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1000;
+    }
+    @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo img {
+    max-height: 80px;
+  }
+
+  .logo {
+    text-align: center;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row; 
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 24px;
+  }
+}
+</style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <a href="eventdark.html">  <img src="RODB transparent.png" alt="Your Logo"> </a>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="event.html" >Events</a>
+            <a href="holidays.html" >Calendar</a>
+            <!-- <a href="untitled.html" target="blank">Acework</a> -->
+        </nav>
+    </header>
+
+    <center><h1> Ongoing Events </h1></center>
+   <!--  <center><p1> no events on going</p1></center> -->
+
+<div class="cards-container">
+    <div class="card">
+        <img src="buddha.png" alt="Event 1">
+    </div>
+    <div class="card">
+        <img src="sportsda.png" alt="Event 2">
+    </div>
+    <!-- <div class="card">
+        <img src="" alt="Event 3">
+    </div>
+    <div class="card">
+        <img src="" alt="Event 4">
+    </div> -->
+</div>
+
+</body>
+</html>

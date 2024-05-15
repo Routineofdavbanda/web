@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RODB | Home</title>
+    <link rel="icon" href="RODB transparent.ico">
+    <style>
+      body {
+        background-color: #f5f5f5; 
+        font-family: 'SF Pro Display', sans-serif; 
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #ffffff; 
+        color: #333; 
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'SF Pro Display', sans-serif; 
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+      }
+
+      .logo img {
+        max-height: 100px;
+        margin-left: 5px;
+        margin-top: 1px;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      nav a {
+        color: #333; 
+        text-decoration: none;
+        font-weight: 600; 
+        position: relative; 
+        transition: color 0.3s ease; 
+        font-size: 30px;
+      }
+
+      nav a:hover {
+        color: rgba(117, 5, 80, 0.9); 
+      }
+
+      nav a::before {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-image: linear-gradient(to right, rgb(0, 255, 255), rgb(255, 0, 0)); 
+        opacity: 0; 
+        transition: opacity 0.3s ease; 
+      }
+
+      nav a:hover::before {
+        opacity: 1; 
+      }
+
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; 
+      }
+
+      .centered-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; 
+        justify-content: center; 
+      }
+
+      .card {
+        max-width: 300px;
+        border-radius: 0.75rem; 
+        background-color: #fff;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        border: 1px solid transparent;
+        transition: box-shadow 0.3s ease, transform 0.3s ease; 
+      }
+
+      .card .image {
+        position: relative;
+      }
+
+      .card .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        background-color: #ffffff; 
+        border-top-left-radius: 0.75rem; 
+        border-top-right-radius: 0.75rem; 
+        overflow: hidden; 
+      }
+
+      .card .image-overlay img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .card:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+        transform: translateY(-5px); 
+      }
+
+      .card a {
+        text-decoration: none;
+      }
+
+      .content {
+        padding: 1.1rem;
+      }
+
+      .image {
+        object-fit: cover;
+        width: 100%;
+        height: 150px;
+        background-color: transparent; 
+      }
+
+      .title {
+        color: #111827;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        font-weight: 600;
+      }
+
+      .desc {
+        margin-top: 0.5rem;
+        color: #6B7280;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+
+      .action {
+        display: inline-flex;
+        margin-top: 1rem;
+        color: #ffffff;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 500;
+        align-items: center;
+        gap: 0.25rem;
+        background-color: #2563EB;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+
+      .action span {
+        transition: .3s ease;
+      }
+
+      .action:hover span {
+        transform: translateX(4px);
+      }
+
+
+      .modal {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); 
+        z-index: 9999; 
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-container {
+        max-height: 400px;
+        max-width: 500px;
+        background-color: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.25);
+      }
+
+      .modal-container-header {
+        padding: 16px 32px;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .modal-container-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        line-height: 1;
+        font-weight: 700;
+        font-size: 1.125;
+      }
+
+      .modal-container-title svg {
+        width: 32px;
+        height: 32px;
+        color: #750550;
+      }
+
+      .modal-container-body {
+        padding: 24px 32px 51px;
+        overflow-y: auto;
+      }
+
+      .rtf h1,
+      .rtf h2,
+      .rtf h3,
+      .rtf h4,
+      .rtf h5,
+      .rtf h6 {
+        font-weight: 700;
+      }
+
+      .rtf h1 {
+        font-size: 1.5rem;
+        line-height: 1.125;
+      }
+
+      .rtf h2 {
+        font-size: 1.25rem;
+        line-height: 1.25;
+      }
+
+      .rtf h3 {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      .rtf > * + * {
+        margin-top: 1em;
+      }
+
+      .rtf > * + :is(h1, h2, h3) {
+        margin-top: 2em;
+      }
+
+      .rtf > :is(h1, h2, h3) + * {
+        margin-top: 0.75em;
+      }
+
+      .rtf ul,
+      .rtf ol {
+        margin-left: 20px;
+        list-style-position: inside;
+      }
+
+      .rtf ol {
+        list-style: numeric;
+      }
+
+      .rtf ul {
+        list-style: disc;
+      }
+
+      .modal-container-footer {
+        padding: 20px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        border-top: 1px solid #ddd;
+        gap: 12px;
+        position: relative;
+      }
+
+      .modal-container-footer:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -51px;
+        left: 24px;
+        right: 24px;
+        height: 50px;
+        flex-shrink: 0;
+        background-image: linear-gradient(to top, rgba(255, 255, 255, 0.75), transparent);
+        pointer-events: none;
+      }
+
+      .button {
+        padding: 12px 20px;
+        border-radius: 8px;
+        background-color: transparent;
+        border: 0;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.15s ease;
+      }
+
+      .button.is-ghost:hover,
+      .button.is-ghost:focus {
+        background-color: #dfdad7;
+      }
+
+      .button.is-primary {
+        background-color: #750550;
+        color: #fff;
+      }
+
+      .button.is-primary:hover,
+      .button.is-primary:focus {
+        background-color: #4a0433;
+      }
+
+      .icon-button {
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: 0.15s ease;
+      }
+
+      .icon-button svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .icon-button:hover,
+      .icon-button:focus {
+        background-color: #dfdad7;
+      }
+
+      .icon-button.is-primary {
+        color: #750550;
+      }
+
+      .icon-button:hover,
+      .icon-button:focus {
+        background-color: #dfdad7;
+      }
+
+      .mySlides {
+        display: none;
+      }
+
+      .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -30px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+      }
+
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+
+      .prev:hover, .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo img {
+    max-height: 80px;
+  }
+
+  .logo {
+    text-align: center;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row; 
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 24px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="indexdark.html"> <img src="RODB transparent.png" alt="Your Logo"> </a>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+            <a href="event.html" >Events</a>
+            <a href="holidays.html" >Calendar</a>
+            <!-- <a href="untitled.html" target="blank">Acework</a> -->
+        </nav>
+    </header>
+
+    <center><h1> Recent News </h1></center>
+
+    <div class="centered-container">
+    <div class="card-container">
+
+  <div class="card">
+    <div class="image">
+      <div class="image-overlay">
+        <img src="https://veda-app.s3.ap-south-1.amazonaws.com/assets/543609/news/2022-06-14/dGdQd6uADmT5p5Wu-1655199708.jpg">
+      </div>
+    </div>
+    <div class="content">
+      <a href="#">
+        <span class="title">Orchestra, Jumba and Arobics</span>
+      </a>
+      <p class="desc">On going practice for Orchestra, Jumba and Arobics 
+      for the event of Sports Day</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="image">
+      <div class="image-overlay">
+        <img src="https://printify.com/wp-content/uploads/2023/02/99-Happy-Mothers-Day-Messages-Greetings-and-Quotes-for-2023.jpg" alt="Your Image 3">
+      </div>
+    </div>
+    <div class="content">
+      <a href="#">
+        <span class="title">Recent Event</span>
+      </a>
+      <p class="desc">Mothers Day event was recently held on 8th of May. The Mothers were awarded with gifts hampers and more fun talents of our davians</p>
+      </a>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="image">
+      <div class="image-overlay">
+
+        <img src="https://veda-app.s3.ap-south-1.amazonaws.com/assets/543609/news/2024-05-07/ys1UwbUZ5lwJ72ZG-1715063648.jpeg">
+      </div>
+    </div>
+    <div class="content">
+      <a href="#">
+        <span class="title">DAV School Students Engage in Manchester United Soccer School Event</span>
+      </a>
+      <p class="desc">The coaches were deeply impressed by the fervor for football in Nepal and urged the young participants to persist in their passion for the sport.</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+    <script>
+    var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+        }
+    </script>
+</body>
+</html>
